@@ -25,3 +25,27 @@ bool PokerCard::operator==(const PokerCard& obj) const
 {
 	return this->value == obj.value;
 }
+
+bool PokerCard::operator<(const PokerCard& obj) const
+{
+	if (this->value > obj.value)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool PokerCard::operator>(const PokerCard& obj) const
+{
+	if (this->value < obj.value)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

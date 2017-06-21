@@ -1,10 +1,8 @@
 #include "cardBlockType.h"
 #include "pokerCard.h"
-#include "pokerUtil.h"
 #include <vector>
 
-cardBlockType::cardBlockType() :
-provCard(PokerCard::HONGXIN, 0)
+cardBlockType::cardBlockType()
 {
 }
 
@@ -25,16 +23,9 @@ void cardBlockType::setBlockType(cardBlockType::BlockType type)
 
 std::vector<cardBlockType>& cardBlockType::checkBlockType(const std::vector<PokerCard>& CardList)
 {
-	std::vector<cardBlockType> typeList;
-	size_t i = CardList.size();
-
-	if (3 == i)
+	if (3 == CardList.size())
 	{
-		if ()
 	}
-	else if (5 == i)
-	{
-
-
-	}
+	else if (5 == CardList.size())
+	{}
 }

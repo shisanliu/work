@@ -1,8 +1,14 @@
 #ifndef _CARDTYPE_H_
 #define _CARDTYPE_H_
 
+#include <algorithm>
+#include <random>
+#include <iomanip>
+#include "pokerCard.h"
+
 class cardType
 {
+public:
 	enum Type {
 		CT_THIRTEEN_FLUSH         =     26,
 		CT_THIRTEEN               =     25,
@@ -28,72 +34,75 @@ class cardType
 		LX_STRAIGHTFLUSH          =     20
 	};
 
-	virtual Type getCardType() const;
-	virtual int getCardShui() const;
-	virtual void setCardType(Type type);
-private:
-	int shui;
-};
-
-
-
-class FiveMidThreeDeouble : public cardType
-{
-
+public:
+	virtual const Type getCardType() const = 0;
 
 };
+
 
 class ThirteenFlush : public cardType
 {
-
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckThirteenFlush(std::vector<PokerCard>& CardList);
 };
 
 class Thirteen : public cardType
 {
-
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckThirteen(std::vector<PokerCard>& CardList);
 };
 
 class TwelveVeKing : public cardType
 {
-
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckTwelveVeKing(std::vector<PokerCard>& CardList);
 };
 
 class ThreeStraightFlush : public cardType
 {
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckThreeStraightFlush(std::vector<PokerCard>& CardList);
 
 };
 
 class ThreeBoom : public cardType
 {
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckThreeBoom(std::vector<PokerCard>& CardList);
 
 };
 
 class AllBig : public cardType
 {
-
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckAllBig(std::vector<PokerCard>& CardList);
 };
 
 class AllSmall : public cardType
 {
-
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckAllSmall(std::vector<PokerCard>& CardList);
 };
 
-class AllSmallColor : public cardType
+class AllSameColor : public cardType
 {
-
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckAllSmameColor(std::vector<PokerCard>& CardList);
 };
 
 class FourThreeSame : public cardType
 {
-
+public:
+	virtual const Type getCardType() const;
+	bool CheckAllSmameColor(std::vector<PokerCard>& CardList);
 };
 
 class FivePairThree : public cardType

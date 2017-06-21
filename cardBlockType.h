@@ -20,7 +20,8 @@ public:
 		CT_FIVE_FOUR_ONE                  =    10,
 		CT_FIVE_STRAIGHT_FLUSH_NO_A       =    11,
 		CT_FIVE_STRAIGHT_FLUSH_FIRST_A    =    12,
-		CT_FIVE_STRAIGHT_FLUSH_BACK_A     =    13
+		CT_FIVE_STRAIGHT_FLUSH_BACK_A     =    13,
+		CT_FIVE_MID_THREE_DEOUBLE         =    14
 	};
 public:
 	cardBlockType();
@@ -33,9 +34,6 @@ public:
 	std::vector<cardBlockType>& checkBlockType(const std::vector<PokerCard>& CardList);
 private:
 	BlockType type;
-	int provIndex;
-	std::vector<PokerCard> CardList;
-	PokerCard provCard;
 };
 
 #endif //_CARDBLOCKTYPE_H_

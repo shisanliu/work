@@ -15,6 +15,9 @@ public:
 	~PokerCard();
 	//---重载 == 相等的时候花色肯定不同 比较数值
 	bool operator==(const PokerCard& obj) const;
+	//--重载< >
+	bool operator<(const PokerCard& obj) const;
+	bool operator>(const PokerCard& obj) const;
 
 public:
 	Kind getPokerCardkind() const;

@@ -8,8 +8,6 @@ class pokerUtil
 {
 public:
 	static void SortCardList(std::vector<PokerCard>& CardList);
-	static bool CheckSameValue(const PokerCard& card, int value);
-	static bool CheckSameKind(const PokerCard& card, PokerCard::Kind kind);
 	static bool CheckFlush(const std::vector<PokerCard>& CardList);
 	static bool CheckTwo(const std::vector<PokerCard>& CardLis);
 	static bool CheckDoubleTwo(const std::vector<PokerCard>& CardLis);

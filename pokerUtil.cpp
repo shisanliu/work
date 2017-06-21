@@ -3,18 +3,17 @@
 #include <random>
 #include <iomanip>
 
+//---------------------------------------------------------------------
+/*
+后期 加注释
+优化代码
+循环部分 判定部分 全要优化
+for 改for_each
+*/
+
 void pokerUtil::SortCardList(std::vector<PokerCard>& CardList)
 {
 	std::sort(CardList.begin(), CardList.end(), [](PokerCard& a, PokerCard& b){ return a.getPokerCardvalue() < b.getPokerCardvalue(); });
-}
-
-bool pokerUtil::CheckSameValue(const PokerCard& card, int value)
-{
-	return card.getPokerCardvalue() == value;
-}
-bool pokerUtil::CheckSameKind(const PokerCard& card, PokerCard::Kind kind)
-{
-	
 }
 
 int count(const std::vector<PokerCard>& CardList, const PokerCard& card)
@@ -34,45 +33,96 @@ bool pokerUtil::CheckFlush(const std::vector<PokerCard>& CardList)
 
 bool pokerUtil::CheckStraight(const std::vector<PokerCard>& CardList)
 {
-	auto value = CardList.at(0).getPokerCardvalue();
+	std::vector<PokerCard> temp = CardList;
+	int value = temp.at(0).getPokerCardvalue();
 
-	for (int i = 1; i < CardList.size(); ++i)
+	for (std::vector<PokerCard>::iterator it = temp.begin() + 1; it < temp.end(); ++it)
 	{
-		if (CardList.at(i).getPokerCardvalue() - i != value)
+		if (it->getPokerCardvalue() != (value + 1))
 		{
 			return false;
 		}
+		value = it->getPokerCardvalue();
 	}
 
 	return true;
 }
 
-bool pokerUtil::CheckTwo(const std::vector<PokerCard>& CardLis)
+bool pokerUtil::CheckTwo(const std::vector<PokerCard>& CardList)
 {
-	int keyvalue = CardLis.at(0).getPokerCardvalue();
-	int count = 1;
-	if (3 == CardLis.size())
+	int countNum = 0;
+	std::vector<PokerCard> temp = CardList;
+	int size = temp.size();
+
+	if (3 == CardList.size())
 	{
-		for (int i = 1; i < CardLis.size(); ++i)
+		for (int i = 0; i < CardList.size(); ++i)
 		{
-			if (keyvalue == CardLis.at(i).getPokerCardvalue())
+			if (2 == count(CardList, CardList.at(i)))
 			{
 				return true;
 			}
 		}
 	}
-	else if (5 == CardLis.size())
+	else if (5 == CardList.size())
 	{
-		for (int i = 1; i < 3; ++i)
+		for (std::vector<PokerCard>::iterator it = temp.begin(); it < temp.end(); ++it)
 		{
-			count = count()
+			if (2 == count(CardList, *it))
+			{
+				countNum++;
+				temp.erase(it);
+			}
 		}
+	}
+
+	if (1 == countNum)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-bool pokerUtil::CheckDoubleTwo(const std::vector<PokerCard>& CardLis, int iNdex)
+bool pokerUtil::CheckDoubleTwo(const std::vector<PokerCard>& CardList)
 {
+	if (CardList.size() < 5)
+	{
+		return false;
+	}
 
+	std::vector<PokerCard> temp = CardList;
+	int countNum = 0;
+
+	//后面再改 用for_each
+	//错误------------------------vector越界
+	//for (int i = 0; i < CardLis.size(); ++i)
+	//{
+	//	if (2 == count(temp, temp.at(i)))
+	//	{
+	//		countNum++;
+	//		temp.push_back(temp.at(i));
+	//	}
+	//}
+	
+	for (std::vector<PokerCard>::iterator it = temp.begin(); it < temp.end(); ++it)
+	{
+		if (2 == count(CardList, *it))
+		{
+			countNum++;
+			temp.erase(it);
+		}
+	}
+	if (2 == countNum)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool pokerUtil::CheckThree(const std::vector<PokerCard>& CardList)
@@ -90,8 +140,13 @@ bool pokerUtil::CheckThree(const std::vector<PokerCard>& CardList)
 	{
 		for (int i = 0; i < 3; ++i)
 		{
-
+			if (3 == count(CardList, CardList.at(i)))
+			{
+				return true;
+			}
 		}
+
+		return false;
 	}
 }
 
